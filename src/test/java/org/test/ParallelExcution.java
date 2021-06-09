@@ -10,7 +10,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.DataProvider;
 import org.testng.annotations.Test;
 
-public class ParallelExcution {
+public class ParallelExcution extends PrioritySample {
 static WebDriver driver;
 @BeforeClass
 public static void launch(){
@@ -29,15 +29,15 @@ public void test1(String s1,String s2)
 	driver.findElement(By.id("pass")).sendKeys(s2);
 
 }
-@Test(dataProvider="sanity")
-public void test2(String s3,String s4)
-{
-	driver.manage().timeouts().implicitlyWait(3000, TimeUnit.SECONDS);
-	driver.findElement(By.id("email")).sendKeys(s3);
-	driver.findElement(By.id("pass")).sendKeys(s4);
-
-}
 @DataProvider(name="sanity")
+public static Object[][]data() throws Throwable{
+	return getdata();
+	
+	
+}
+
+
+/*@DataProvider(name="sanity")
 public static Object[][]data(){
 	return new Object[][] {{"ruban","12345"},
 		                   {"kumar","45678"},
@@ -49,5 +49,5 @@ public static Object[][]data(){
 public static void quit() {
 	driver.quit();
 	
-}
+}*/
 }
